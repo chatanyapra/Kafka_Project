@@ -1,10 +1,12 @@
-const {kafka, Kafka} = require('kafkajs')
+const {Kafka} = require('kafkajs')
+
 const kafka = new Kafka({
     clientId: "user-service",
-    brokers: ['"localhost:9092"']
+    brokers: ["localhost:9092"]
 })
 
-const producer = new kafka.producer();
+const producer = kafka.producer();
+
 async function sendUserEvent(user) {
     await producer.connect();
     await producer.send({
